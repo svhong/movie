@@ -11,6 +11,7 @@ class User:
   def add_movie(self, name, genre):
     movie = Movie(name, genre, False)
     self.movies.append(movie)
+    print("Successfully added movie!")
 
   def delete_movie(self, name):
     self.movies = list(filter(lambda movie: movie.name != name, self.movies))
