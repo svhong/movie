@@ -18,7 +18,7 @@ def menu():
     print("User successfully created! ", user)  
 
   # provide user with menu
-  user_input = input("Enter 'A' to add a movie, 'S' to see a list of all movies, 'W' to set a movie as watched, 'D' to delete a movie, and 'L' to see a list of watched movies: ")
+  user_input = input(" 'a' - Add Movie \n 's' - See your list of movies \n 'w' - Mark a movie as watched \n 'd' - Remove a movie from your list \n 'e' - Show list of all watched: ")
   if user_input == 'a':
     name = input("Please enter the title of the movie: ")
     genre = input("Please enter the genre: ")
