@@ -17,9 +17,9 @@ def menu():
   else:
     user = User(name)
     print("User successfully created! ", user)  
-  print ('*' * 100)
+  print ('=' * 100)
   user_input = input("'a' - Add a movie.\n's' - See list of movies.\n'w' - Set movie as watched.\n'd' - Delete a movie.\n'e' - List of watched movies.\n'q' - Exit the app.\nYour Selection: ")
-  print ('*' * 100)
+  print ('=' * 100)
   while user_input != 'q':
     if user_input == 'a':
       name = input("Please enter the title of the movie: ")
@@ -32,7 +32,10 @@ def menu():
         print ('*' * 100)
       pass
     elif user_input == 's':
-      print (user.movies)
+      for movie in user.movies:
+        print('-' * 50)
+        print("Name: {}\nGenre: {}\nWatched: {}".format(movie.name, movie.genre, movie.watched))
+        print('-' * 50)
       pass
     elif user_input == 'w':
       pass
@@ -49,8 +52,9 @@ def menu():
       pass
     elif user_input == 'q':
       return
+    print ('=' * 100)
     user_input = input("'a' - Add a movie.\n's' - See list of movies.\n'w' - Set movie as watched.\n'd' - Delete a movie.\n'e' - List of watched movies.\n'q' - Exit the app.\nYour Selection: ")
-    print ('*' * 100)
+    print ('=' * 100)
 
 
 def file_exists(filename):
