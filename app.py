@@ -10,15 +10,16 @@ def menu():
   if file_exists(filename):
     with open(filename, 'r') as f:
       json_data = json.load(f)
+      # need a real success / error message here
       print("Successfully loaded json from file!")
     user = User.from_json(json_data)
     print("Welcome back, {}!".format(user.name))
   else:
     user = User(name)
     print("User successfully created! ", user)  
-
-  user_input = input("Enter 'A' to add a movie, 'S' to see a list of all movies, 'W' to set a movie as watched, 'D' to delete a movie, and 'L' to see a list of watched movies: ")
-
+  print ('=' * 100)
+  user_input = input("'a' - Add a movie.\n's' - See list of movies.\n'w' - Set movie as watched.\n'd' - Delete a movie.\n'e' - List of watched movies.\n'q' - Exit the app.\nYour Selection: ")
+  print ('=' * 100)
   while user_input != 'q':
     if user_input == 'a':
       name = input("Please enter the title of the movie: ")
@@ -26,18 +27,34 @@ def menu():
       user.add_movie(name, genre)
       with open(filename, 'w') as f:
         json.dump(user.json(), f)
+        # need a real success / error message here
         print("Movie added successfully!")
+        print ('*' * 100)
       pass
     elif user_input == 's':
-      print (user.movies)
+      for movie in user.movies:
+        print('-' * 50)
+        print("Name: {}\nGenre: {}\nWatched: {}".format(movie.name, movie.genre, movie.watched))
+        print('-' * 50)
       pass
     elif user_input == 'w':
       pass
     elif user_input == 'd':
+      print(user.movies)
+      name = input("Name of movie to delete: ")
+      user.delete_movie(name)
+      with open(filename, 'w') as f:
+        json.dump(user.json(), f)
+        # need a real success / error message here
+        print("Movie deleted successfully!")
+      print(user.movies)
+      print ('*' * 100)
       pass
     elif user_input == 'q':
       return
-    user_input = input("Enter 'A' to add a movie, 'S' to see a list of all movies, 'W' to set a movie as watched, 'D' to delete a movie, and 'L' to see a list of watched movies: ")
+    print ('=' * 100)
+    user_input = input("'a' - Add a movie.\n's' - See list of movies.\n'w' - Set movie as watched.\n'd' - Delete a movie.\n'e' - List of watched movies.\n'q' - Exit the app.\nYour Selection: ")
+    print ('=' * 100)
 
 
 def file_exists(filename):
